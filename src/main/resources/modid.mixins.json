@@ -5,7 +5,6 @@
   "mixins": [
   ],
   "client": [
-    "DebugHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1
