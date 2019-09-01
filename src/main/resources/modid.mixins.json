@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "net.fabricmc.additionalDebugInfo.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "client": [
+    "DebugHudMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
