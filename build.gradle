@@ -14,7 +14,12 @@ minecraft {
 }
 
 dependencies {
-	//to change the versions see the gradle.properties file
+
+	modApi "com.github.Pyrofab.Cardinal-Components-API:cardinal-components-base:2.0.1-pre"
+	include "com.github.Pyrofab.Cardinal-Components-API:cardinal-components-base:2.0.1-pre"
+	modImplementation "com.github.Pyrofab.Cardinal-Components-API:cardinal-components-entity:2.0.1-pre"
+	include "com.github.Pyrofab.Cardinal-Components-API:cardinal-components-entity:2.0.1-pre"
+	
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}"
 	modCompile "net.fabricmc:fabric-loader:${project.loader_version}"
@@ -57,7 +62,16 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 jar {
 	from "LICENSE"
 }
-
+repositories {
+	maven {
+		name = "JitPack"
+		url "https://jitpack.io"
+	}
+//	maven {
+//		name = "NerdHubMC"
+//		url = "https://maven.abusedmaster.xyz"
+//	}
+}
 // configure the maven publication
 publishing {
 	publications {
@@ -72,9 +86,5 @@ publishing {
 		}
 	}
 
-	// select the repositories you want to publish to
-	repositories {
-		// uncomment to publish to the local maven
-		// mavenLocal()
-	}
+	
 }

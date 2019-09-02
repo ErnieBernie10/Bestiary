@@ -1,6 +1,7 @@
 package net.fabricmc.bestiary.items;
 
 import net.fabricmc.bestiary.Bestiary;
+import net.fabricmc.bestiary.components.MobKillsComponent;
 import net.fabricmc.bestiary.screens.BestiaryScreen;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.minecraft.client.MinecraftClient;
@@ -31,6 +32,9 @@ public class BestiaryItem extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
         Screen s = new BestiaryScreen(new LiteralText("Test"));
         this.client.openScreen(s);
+        MobKillsComponent component = Bestiary.KILLS_COMPONENT.get(playerEntity);
+        component.addKills(1);
+        System.out.println(component.getKills());
         return new TypedActionResult(ActionResult.PASS, playerEntity.getStackInHand(hand));
     }
 }
