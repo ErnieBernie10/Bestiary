@@ -32,9 +32,8 @@ public class BestiaryItem extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
         Screen s = new BestiaryScreen(new LiteralText("Test"));
         this.client.openScreen(s);
-        MobKillsComponent component = Bestiary.KILLS_COMPONENT.get(playerEntity);
-        component.addKills(1);
-        System.out.println(component.getKills());
+
+
         return new TypedActionResult(ActionResult.PASS, playerEntity.getStackInHand(hand));
     }
 }

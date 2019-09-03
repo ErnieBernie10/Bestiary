@@ -4,36 +4,38 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class PlayerMobKillsComponent implements MobKillsComponent {
-    private int kills;
+    private CompoundTag kills;
     private PlayerEntity owner;
 
     public PlayerMobKillsComponent(PlayerEntity owner) {
-        kills = 0;
+        kills = new CompoundTag();
         this.owner = owner;
     }
 
-    @Override
-    public int getKills() {
-        return kills;
+    public PlayerEntity getOwner() {
+        return owner;
     }
 
     @Override
-    public void addKills(int amount) {
-        kills += amount;
+    public int getKills(LivingEntity entity) {
+        return kills.getInt(entity.getName().asString());
+    }
+
+    @Override
+    public void addKills(LivingEntity entity, int amount) {
+        String mobName = entity.getName().asString();
+        kills.putInt(mobName, kills.getInt(mobName) + amount);
     }
 
     @Override
     public void fromTag(CompoundTag compoundTag) {
-        kills = compoundTag.getInt("kills");
+        kills = compoundTag;
     }
 
     @Override
     public CompoundTag toTag(CompoundTag compoundTag) {
-        compoundTag.putInt("kills", kills);
-        return compoundTag;
+        return this.kills;
     }
 }
