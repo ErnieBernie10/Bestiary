@@ -5,7 +5,7 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.util.Identifier;
 
-public class CategoriesScreen extends BaseBestiaryScreen {
+public class CategoriesScreen extends CategoriesBestiaryScreen {
 
     ButtonWidget friendlyButton;
     ButtonWidget neutralButton;
