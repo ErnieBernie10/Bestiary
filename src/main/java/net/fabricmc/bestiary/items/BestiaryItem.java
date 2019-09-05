@@ -1,5 +1,7 @@
 package net.fabricmc.bestiary.items;
 
+import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
+import net.fabricmc.bestiary.gui.BaseBestiaryGUI;
 import net.fabricmc.bestiary.screens.BaseBestiaryScreen;
 import net.fabricmc.bestiary.screens.CategoriesScreen;
 import net.minecraft.client.MinecraftClient;
@@ -23,9 +25,9 @@ public class BestiaryItem extends Item {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
-        Screen s = new CategoriesScreen();
-        this.client.openScreen(s);
+        LightweightGuiDescription s = new BaseBestiaryGUI();
 
+        this.client.openScreen(new BaseBestiaryScreen(s));
 
         return new TypedActionResult(ActionResult.PASS, playerEntity.getStackInHand(hand));
     }
