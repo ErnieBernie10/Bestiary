@@ -1,9 +1,8 @@
 package net.fabricmc.bestiary.items;
 
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
-import net.fabricmc.bestiary.gui.BaseBestiaryGUI;
 import net.fabricmc.bestiary.gui.CategoriesBestiaryGUI;
-import net.fabricmc.bestiary.screens.CategoriesBestiaryScreen;
+import net.fabricmc.bestiary.gui.screens.CategoriesBestiaryScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;

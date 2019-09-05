@@ -1,4 +1,4 @@
-package net.fabricmc.bestiary.screens;
+package net.fabricmc.bestiary.gui.screens;
 
 import io.github.cottonmc.cotton.gui.GuiDescription;
 import net.minecraft.client.gui.widget.ButtonWidget;

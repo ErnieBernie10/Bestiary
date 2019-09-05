@@ -16,6 +16,9 @@ public class WSpriteButton extends WButton {
         this.spriteHovered = spriteHovered;
         this.spriteWidth = spriteWidth;
         this.spriteHeight = spriteHeight;
+        super.height = spriteHeight;
+        super.width = spriteWidth;
+        super.setSize(spriteHeight, spriteWidth);
     }
 
     @Override
@@ -27,4 +30,12 @@ public class WSpriteButton extends WButton {
             ScreenDrawing.rect(sprite, x, y, spriteWidth, spriteHeight, -1);
         }
     }
+
+    @Override
+    public void setSize(int x, int y) {
+        super.width = x;
+        super.height = y;
+    }
+
+
 }

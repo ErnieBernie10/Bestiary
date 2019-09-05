@@ -1,10 +1,7 @@
-package net.fabricmc.bestiary.screens;
+package net.fabricmc.bestiary.gui.screens;
 
 import io.github.cottonmc.cotton.gui.GuiDescription;
 import io.github.cottonmc.cotton.gui.client.ClientCottonScreen;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.text.LiteralText;
-import net.minecraft.util.Identifier;
 
 public class CategoriesBestiaryScreen extends ClientCottonScreen {
 
