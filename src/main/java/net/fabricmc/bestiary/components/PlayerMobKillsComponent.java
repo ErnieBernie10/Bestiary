@@ -1,8 +1,15 @@
 package net.fabricmc.bestiary.components;
 
+import net.fabricmc.fabric.api.tag.TagRegistry;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.tag.EntityTypeTags;
+import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagContainer;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 
 public class PlayerMobKillsComponent implements MobKillsComponent {
@@ -25,8 +32,9 @@ public class PlayerMobKillsComponent implements MobKillsComponent {
 
     @Override
     public void addKills(LivingEntity entity, int amount) {
-        String mobName = entity.getName().asString();
-        kills.putInt(mobName, kills.getInt(mobName) + amount);
+        Tag tag = TagRegistry.entityType(new Identifier("bestiary:neutrals"));
+        String mobId = Registry.ENTITY_TYPE.getId(entity.getType()).toString();
+        kills.putInt(mobId, kills.getInt(mobId) + amount);
     }
 
     @Override

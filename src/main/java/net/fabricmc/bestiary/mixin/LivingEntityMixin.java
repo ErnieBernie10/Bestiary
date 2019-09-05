@@ -23,7 +23,6 @@ public abstract class LivingEntityMixin extends Entity {
     @Inject(method = "onDeath", at = @At("HEAD"))
     public void onDeath(DamageSource source, CallbackInfo ci) {
         Entity attacker = source.getAttacker();
-        System.out.println("HERE");
         if (attacker instanceof PlayerEntity) {
             MobKillsComponent component = Bestiary.KILLS_COMPONENT.get(attacker);
             component.addKills((LivingEntity) (Object) this, 1);

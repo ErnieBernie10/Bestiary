@@ -11,6 +11,7 @@ import net.fabricmc.bestiary.items.BestiaryItem;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.tag.EntityTypeTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
