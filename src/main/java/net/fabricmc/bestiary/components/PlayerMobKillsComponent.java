@@ -11,6 +11,8 @@ import net.minecraft.tag.TagContainer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+import java.util.Map;
+
 
 public class PlayerMobKillsComponent implements MobKillsComponent {
     private CompoundTag kills;
@@ -32,9 +34,12 @@ public class PlayerMobKillsComponent implements MobKillsComponent {
 
     @Override
     public void addKills(LivingEntity entity, int amount) {
-        Tag tag = TagRegistry.entityType(new Identifier("bestiary:neutrals"));
         String mobId = Registry.ENTITY_TYPE.getId(entity.getType()).toString();
         kills.putInt(mobId, kills.getInt(mobId) + amount);
+    }
+
+    public Map<EntityType, Integer> getHostileKills() {
+        for (kills.get)
     }
 
     @Override

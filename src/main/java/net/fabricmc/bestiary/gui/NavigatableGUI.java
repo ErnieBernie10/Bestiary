@@ -7,17 +7,19 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class NavigatableGUI extends BaseBestiaryGUI {
 
     private BaseBestiaryGUI parent;
     private WButton homeButton;
-    private List<EntityType> types;
+    private Map<EntityType, Integer> types;
 
     public NavigatableGUI(Identifier background, BaseBestiaryGUI parent) {
         super(background);
-        types = new ArrayList<>();
+        types = new HashMap<>();
         this.parent = parent;
         homeButton = new WButton(new LiteralText("Home"));
         homeButton.setOnClick(() -> openScreen(new BestiaryScreen(parent)));
@@ -25,11 +27,11 @@ public class NavigatableGUI extends BaseBestiaryGUI {
 
     }
 
-    public List<EntityType> getTypes() {
+    public Map<EntityType, Integer> getTypes() {
         return types;
     }
 
-    public void setTypes(List<EntityType> types) {
+    public void setTypes(Map<EntityType, Integer> types) {
         this.types = types;
     }
 }
