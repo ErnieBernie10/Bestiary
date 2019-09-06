@@ -39,7 +39,7 @@ public class PlayerMobKillsComponent implements MobKillsComponent {
     }
 
     public Map<EntityType, Integer> getHostileKills() {
-        for (kills.get)
+        return null;
     }
 
     @Override
