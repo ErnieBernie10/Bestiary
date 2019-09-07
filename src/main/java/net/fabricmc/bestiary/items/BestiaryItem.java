@@ -24,7 +24,7 @@ public class BestiaryItem extends Item {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
-        LightweightGuiDescription categories = new CategoriesBestiaryGUI();
+        LightweightGuiDescription categories = new CategoriesBestiaryGUI(playerEntity);
         ClientCottonScreen bestiaryScreen = new BestiaryScreen(categories);
         this.client.openScreen(bestiaryScreen);
 
