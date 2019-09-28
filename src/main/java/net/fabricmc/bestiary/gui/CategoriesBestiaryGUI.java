@@ -4,6 +4,7 @@ import io.github.cottonmc.cotton.gui.widget.WButton;
 import nerdhub.cardinal.components.api.ComponentRegistry;
 import nerdhub.cardinal.components.api.component.Component;
 import net.fabricmc.bestiary.Bestiary;
+import net.fabricmc.bestiary.KillCounterModel;
 import net.fabricmc.bestiary.components.MobKillsComponent;
 import net.fabricmc.bestiary.gui.screens.BestiaryScreen;
 import net.fabricmc.bestiary.gui.widget.WSpriteButton;
@@ -39,7 +40,7 @@ public class CategoriesBestiaryGUI extends BaseBestiaryGUI {
                 171);
         friendlyButton.setOnClick(() -> {
             MobKillsComponent c = Bestiary.KILLS_COMPONENT.get(owner);
-            friendlyCategoryGUI.setTypes(c.getPassiveKills());
+            friendlyCategoryGUI.setKills(KillCounterModel.createModelList(c.getPassiveKills()));
             openScreen(new BestiaryScreen(friendlyCategoryGUI));
         });
         getRoot().add(friendlyButton, 10, 0, 2, 10);

@@ -3,6 +3,7 @@ package net.fabricmc.bestiary.gui;
 import io.github.cottonmc.cotton.gui.widget.WButton;
 import io.github.cottonmc.cotton.gui.widget.WLabel;
 import io.github.cottonmc.cotton.gui.widget.WListPanel;
+import net.fabricmc.bestiary.KillCounterModel;
 import net.fabricmc.bestiary.gui.screens.BestiaryScreen;
 import net.fabricmc.bestiary.gui.widget.WCustomLabel;
 import net.minecraft.entity.EntityType;
@@ -18,22 +19,22 @@ public class NavigatableGUI extends BaseBestiaryGUI {
 
     private BaseBestiaryGUI parent;
     private WButton homeButton;
-    private Map<EntityType, Integer> types;
+    private List<KillCounterModel> kills;
 
     public NavigatableGUI(Identifier background, BaseBestiaryGUI parent) {
         super(background);
-        types = new HashMap<>();
+        kills = new ArrayList<>();
         this.parent = parent;
         homeButton = new WButton(new LiteralText("Home"));
         homeButton.setOnClick(() -> openScreen(new BestiaryScreen(parent)));
         getRoot().add(homeButton, 0, 0, 2, 0);
     }
 
-    public Map<EntityType, Integer> getTypes() {
-        return types;
+    public List<KillCounterModel> getKills() {
+        return kills;
     }
 
-    public void setTypes(Map<EntityType, Integer> types) {
-        this.types = types;
+    public void setKills(List<KillCounterModel> kills) {
+        this.kills = kills;
     }
 }
