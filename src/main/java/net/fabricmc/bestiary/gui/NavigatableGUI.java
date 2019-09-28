@@ -2,7 +2,9 @@ package net.fabricmc.bestiary.gui;
 
 import io.github.cottonmc.cotton.gui.widget.WButton;
 import io.github.cottonmc.cotton.gui.widget.WLabel;
+import io.github.cottonmc.cotton.gui.widget.WListPanel;
 import net.fabricmc.bestiary.gui.screens.BestiaryScreen;
+import net.fabricmc.bestiary.gui.widget.WCustomLabel;
 import net.minecraft.entity.EntityType;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
@@ -25,7 +27,6 @@ public class NavigatableGUI extends BaseBestiaryGUI {
         homeButton = new WButton(new LiteralText("Home"));
         homeButton.setOnClick(() -> openScreen(new BestiaryScreen(parent)));
         getRoot().add(homeButton, 0, 0, 2, 0);
-
     }
 
     public Map<EntityType, Integer> getTypes() {
@@ -34,10 +35,5 @@ public class NavigatableGUI extends BaseBestiaryGUI {
 
     public void setTypes(Map<EntityType, Integer> types) {
         this.types = types;
-        int pos = 0;
-        for (Map.Entry<EntityType, Integer> entry : types.entrySet()) {
-            getRoot().add(new WLabel("TEST"), 5, pos, 5, 1);
-            pos += 2;
-        }
     }
 }

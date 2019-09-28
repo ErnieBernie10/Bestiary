@@ -17,14 +17,10 @@ public class WSpriteGridPanel extends WGridPanel {
     }
 
     @Override
-    public void paintForeground(int x, int y, int mouseX, int mouseY) {
-        ScreenDrawing.rect(sprite, x, y, spriteWidth, spriteHeight, -1);
-        super.paintForeground(x, y, mouseX, mouseY);
-    }
-
-    @Override
     public void paintBackground(int x, int y) { }
 
     @Override
-    public void paintBackground(int x, int y, int mouseX, int mouseY) { }
+    public void paintBackground(int x, int y, int mouseX, int mouseY) {
+        ScreenDrawing.rect(sprite, x, y, spriteWidth, spriteHeight, -1);
+    }
 }
