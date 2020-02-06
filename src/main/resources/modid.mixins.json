@@ -1,11 +1,11 @@
 {
   "required": true,
-  "package": "net.fabricmc.bestiary.mixin",
+  "package": "net.fabricmc.example.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
   ],
   "client": [
-    "LivingEntityMixin"
+    "ExampleMixin"
   ],
   "injectors": {
     "defaultRequire": 1

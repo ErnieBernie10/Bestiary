@@ -1,6 +1,16 @@
-# Bestiary
+# Fabric Example Mod
 
-## General Description
+## Setup
 
-We all know what a bestiary (or I’d hope we do) and this mod is just that. By combining [insert stuff here] you yourself can craft yourself a bestiary for use in the realm of Minecraft. Now, I know, you may think it’s useless as you could just go to the Minecraft wiki, however! Overtime the bestiary keeps track of how many of each mob you kill, giving you various buffs against them the more you learn of them, lets you make your own notes, and [hopefully] supports any mod that is willing (whether they make new mobs or affect the ones already in the game).
+1. Edit build.gradle and mod.json to suit your needs.
+    * The "mixins" object can be removed from mod.json if you do not need to use mixins.
+    * Please replace all occurences of "modid" with your own mod ID - sometimes, a different string may also suffice.
+2. Run the following command:
 
+```
+./gradlew idea
+```
+
+## License
+
+This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.

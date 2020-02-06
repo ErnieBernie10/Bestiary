@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "id": "bestiary",
+  "id": "modid",
   "version": "${version}",
 
-  "name": "Bestiary",
-  "description": "We all know what a bestiary (or I’d hope we do) and this mod is just that. By combining [insert stuff here] you yourself can craft yourself a bestiary for use in the realm of Minecraft. Now, I know, you may think it’s useless as you could just go to the Minecraft wiki, however! Overtime the bestiary keeps track of how many of each mob you kill, giving you various buffs against them the more you learn of them, lets you make your own notes, and [hopefully] supports any mod that is willing (whether they make new mobs or affect the ones already in the game).",
+  "name": "Example Mod",
+  "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
-    "ErnieBernie10"
+    "Me!"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
@@ -14,21 +14,22 @@
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/bestiary/icon.png",
+  "icon": "assets/modid/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.bestiary.Bestiary"
+      "net.fabricmc.example.ExampleMod"
     ]
   },
   "mixins": [
-    "bestiary.mixins.json"
+    "modid.mixins.json"
   ],
 
   "depends": {
-    "fabricloader": ">=0.4.0",
-    "fabric": "*"
+    "fabricloader": ">=0.7.2",
+    "fabric": "*",
+    "minecraft": "1.15.x"
   },
   "suggests": {
     "flamingo": "*"
