@@ -42,7 +42,7 @@ public class KillCounter {
 
     private void addKills(Map<String, Integer> map, EntityType type, int amount) {
         String typeId = Registry.ENTITY_TYPE.getId(type).toString();
-        if (map.get(typeId) == 0) {
+        if (!map.containsKey(typeId)) {
             map.put(typeId, amount);
         } else {
             map.put(typeId, map.get(typeId) + amount);
@@ -83,5 +83,21 @@ public class KillCounter {
             kills.put(key, tag.getInt(key));
         }
         return kills;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        mapToString(passiveKills, builder);
+        mapToString(neutralKills, builder);
+        mapToString(hostileKills, builder);
+        mapToString(bossKills, builder);
+        return builder.toString();
+    }
+
+    private void mapToString(Map<String, Integer> map, StringBuilder builder) {
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            builder.append(entry.getKey()).append(" : ").append(entry.getValue()).append("\n");
+        }
     }
 }

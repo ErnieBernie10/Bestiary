@@ -21,7 +21,7 @@ public abstract class LivingEntityMixin extends Entity {
     @Inject(method = "onDeath", at = @At("HEAD"))
     public void onDeath(DamageSource source, CallbackInfo info) {
         if (source.getAttacker() instanceof PlayerEntity) {
-            ((PlayerEntityExt) source).addKills(super.getType());
+            ((PlayerEntityExt) source.getAttacker()).addKills(super.getType());
         }
     }
 }

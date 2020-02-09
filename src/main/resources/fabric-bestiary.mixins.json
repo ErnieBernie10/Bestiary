@@ -3,6 +3,8 @@
   "package": "net.erniebernie.bestiary.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "LivingEntityMixin",
+    "PlayerEntityMixin"
   ],
   "client": [
   ],
