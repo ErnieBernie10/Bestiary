@@ -100,4 +100,20 @@ public class KillCounter {
             builder.append(entry.getKey()).append(" : ").append(entry.getValue()).append("\n");
         }
     }
+
+    public Map<String, Integer> getPassiveKills() {
+        return passiveKills;
+    }
+
+    public Map<String, Integer> getNeutralKills() {
+        return neutralKills;
+    }
+
+    public Map<String, Integer> getHostileKills() {
+        return hostileKills;
+    }
+
+    public Map<String, Integer> getBossKills() {
+        return bossKills;
+    }
 }

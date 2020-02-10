@@ -19,7 +19,8 @@ public class BestiaryBookItem extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (world.isClient) {
-            MinecraftClient.getInstance().openScreen(new BestiaryScreen(new MainBestiaryGui()));
+            KillCounter counter = ((PlayerEntityExt) user).getKillCounter();
+            MinecraftClient.getInstance().openScreen(new BestiaryScreen(new MainBestiaryGui(counter)));
         }
         return new TypedActionResult<>(ActionResult.SUCCESS, (hand==Hand.MAIN_HAND) ? user.getMainHandStack() : user.getOffHandStack());
     }

@@ -21,6 +21,16 @@ public class PlayerEntityMixin implements PlayerEntityExt {
         kills.addKills(entity, 1);
     }
 
+    @Override
+    public KillCounter getKillCounter() {
+        return this.kills;
+    }
+
+    @Override
+    public void setKillCounter(KillCounter counter) {
+        this.kills = counter;
+    }
+
     @Inject(method = "writeCustomDataToTag", at = @At("HEAD"))
     public void writeCustomDataToTag(CompoundTag tag, CallbackInfo ci) {
         tag.put("kills", kills.toTag());

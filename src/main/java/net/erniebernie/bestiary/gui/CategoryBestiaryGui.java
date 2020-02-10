@@ -1,0 +1,66 @@
+package net.erniebernie.bestiary.gui;
+
+import io.github.cottonmc.cotton.gui.client.BackgroundPainter;
+import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
+import io.github.cottonmc.cotton.gui.client.ScreenDrawing;
+import io.github.cottonmc.cotton.gui.widget.WGridPanel;
+import io.github.cottonmc.cotton.gui.widget.WListPanel;
+import io.github.cottonmc.cotton.gui.widget.WWidget;
+import net.erniebernie.bestiary.gui.models.BestiaryListItem;
+import net.minecraft.util.Identifier;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.function.BiConsumer;
+
+public class CategoryBestiaryGui extends LightweightGuiDescription {
+
+    private Map<String, Integer> category;
+    private Identifier background;
+
+    public CategoryBestiaryGui(Map<String, Integer> category, Identifier background) {
+        this.category = category;
+        this.background = background;
+
+        WGridPanel root = new WGridPanel();
+        root.setSize(320, 200);
+        setRootPanel(root);
+
+        BiConsumer<DataModel, BestiaryListItem> config = (data, bestiaryListItem) -> {
+            bestiaryListItem.setName(data.id);
+            bestiaryListItem.setKills(data.kills);
+        };
+
+        WListPanel<DataModel, BestiaryListItem> killsList = new WListPanel<>(mapToList(category), BestiaryListItem::new, config);
+        killsList.setListItemHeight(20);
+
+        root.add(killsList, 0, 0, 9, 20);
+
+        root.validate(this);
+    }
+
+    @Override
+    public void addPainters() {
+        getRootPanel().setBackgroundPainter((i, i1, wWidget) -> ScreenDrawing.texturedRect(i, i1, wWidget.getWidth(), wWidget.getHeight(), background, -1));
+    }
+
+    // TODO : Find a way to use the Map itself instead of having to convert it to a list
+    public List<DataModel> mapToList(Map<String, Integer> map) {
+        List<DataModel> list = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            list.add(new DataModel(entry.getKey(), entry.getValue()));
+        }
+        return list;
+    }
+
+    private static class DataModel {
+        String id;
+        int kills;
+
+        public DataModel(String id, int kills) {
+            this.id = id;
+            this.kills = kills;
+        }
+    }
+}
