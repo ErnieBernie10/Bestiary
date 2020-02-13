@@ -8,6 +8,14 @@ repositories {
 		name = "CottonMC"
 		url = "http://server.bbkr.space:8081/artifactory/libs-release"
 	}
+	maven {
+		name = "Onyx Studios"
+		url = "https://maven.onyxstudios.dev"
+	}
+	maven {
+		name = "JitPack"
+		url = "https://jitpack.io"
+	}
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -31,6 +39,10 @@ dependencies {
 	modImplementation "io.github.cottonmc:LibGui:${project.libgui_version}"
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
+
+	// Replace modImplementation with modApi if you expose components in your own API
+	modApi "com.github.NerdHubMC.Cardinal-Components-API:cardinal-components-base:2.3.0"
+	modApi "com.github.NerdHubMC.Cardinal-Components-API:cardinal-components-entity:2.3.0"
 }
 
 processResources {

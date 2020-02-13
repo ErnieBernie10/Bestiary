@@ -1,5 +1,9 @@
-package net.erniebernie.bestiary;
+package net.erniebernie.bestiary.items;
 
+import net.erniebernie.bestiary.BestiaryMod;
+import net.erniebernie.bestiary.gui.components.CounterComponent;
+import net.erniebernie.bestiary.gui.components.KillCounter;
+import net.erniebernie.bestiary.PlayerEntityExt;
 import net.erniebernie.bestiary.gui.MainBestiaryGui;
 import net.erniebernie.bestiary.gui.screens.BestiaryScreen;
 import net.minecraft.client.MinecraftClient;
@@ -19,7 +23,7 @@ public class BestiaryBookItem extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (world.isClient) {
-            KillCounter counter = ((PlayerEntityExt) user).getKillCounter();
+            CounterComponent counter = BestiaryMod.KILLS_COMPONENT.get(user);
             MinecraftClient.getInstance().openScreen(new BestiaryScreen(new MainBestiaryGui(counter)));
         }
         return new TypedActionResult<>(ActionResult.SUCCESS, (hand==Hand.MAIN_HAND) ? user.getMainHandStack() : user.getOffHandStack());

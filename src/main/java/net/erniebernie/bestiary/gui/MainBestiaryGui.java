@@ -1,12 +1,10 @@
 package net.erniebernie.bestiary.gui;
 
-import io.github.cottonmc.cotton.gui.client.BackgroundPainter;
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.client.ScreenDrawing;
-import io.github.cottonmc.cotton.gui.widget.WButton;
 import io.github.cottonmc.cotton.gui.widget.WGridPanel;
-import io.github.cottonmc.cotton.gui.widget.WWidget;
-import net.erniebernie.bestiary.KillCounter;
+import net.erniebernie.bestiary.gui.components.CounterComponent;
+import net.erniebernie.bestiary.gui.components.KillCounter;
 import net.erniebernie.bestiary.gui.screens.BestiaryScreen;
 import net.erniebernie.bestiary.gui.widgets.WSpriteButton;
 import net.minecraft.client.MinecraftClient;
@@ -14,9 +12,9 @@ import net.minecraft.util.Identifier;
 
 public class MainBestiaryGui extends LightweightGuiDescription {
 
-    private KillCounter counter;
+    private CounterComponent counter;
 
-    public MainBestiaryGui(KillCounter counter) {
+    public MainBestiaryGui(CounterComponent counter) {
         this.counter = counter;
 
         WGridPanel root = new WGridPanel();

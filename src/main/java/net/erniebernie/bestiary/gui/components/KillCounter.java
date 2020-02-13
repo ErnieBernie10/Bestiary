@@ -1,5 +1,6 @@
-package net.erniebernie.bestiary;
+package net.erniebernie.bestiary.gui.components;
 
+import nerdhub.cardinal.components.api.component.Component;
 import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.nbt.CompoundTag;
@@ -10,7 +11,7 @@ import net.minecraft.util.registry.Registry;
 import java.util.HashMap;
 import java.util.Map;
 
-public class KillCounter {
+public class KillCounter implements CounterComponent {
     private Map<String, Integer> passiveKills;
     private Map<String, Integer> neutralKills;
     private Map<String, Integer> hostileKills;
@@ -49,20 +50,7 @@ public class KillCounter {
         }
     }
 
-    public Tag toTag() {
-        CompoundTag tag = new CompoundTag();
-        Tag passives = toTag(passiveKills);
-        Tag neutrals = toTag(neutralKills);
-        Tag hostiles = toTag(hostileKills);
-        Tag bosses = toTag(bossKills);
-        tag.put("passives", passives);
-        tag.put("neutrals", neutrals);
-        tag.put("hostiles", hostiles);
-        tag.put("bosses", bosses);
-        return tag;
-    }
-
-    private Tag toTag(Map<String, Integer> map) {
+    private CompoundTag toTag(Map<String, Integer> map) {
         CompoundTag tag = new CompoundTag();
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
             tag.putInt(entry.getKey(), entry.getValue());
@@ -70,17 +58,35 @@ public class KillCounter {
         return tag;
     }
 
+    @Override
     public void fromTag(CompoundTag tag) {
-        this.passiveKills = tagToMap(tag.getCompound("passives"));
-        this.neutralKills = tagToMap(tag.getCompound("neutrals"));
-        this.hostileKills = tagToMap(tag.getCompound("hostiles"));
-        this.bossKills = tagToMap(tag.getCompound("bosses"));
+        this.passiveKills = tagToMap(tag.get("passives"));
+        this.neutralKills = tagToMap(tag.get("neutrals"));
+        this.hostileKills = tagToMap(tag.get("hostiles"));
+        this.bossKills = tagToMap(tag.get("bosses"));
+        System.out.println(this.toString());
     }
 
-    private Map<String, Integer> tagToMap(CompoundTag tag) {
+    @Override
+    public CompoundTag toTag(CompoundTag tag) {
+        tag.put("passives", toTag(passiveKills));
+        tag.put("neutrals", toTag(neutralKills));
+        tag.put("hostiles", toTag(hostileKills));
+        tag.put("bosses", toTag(bossKills));
+        System.out.println(this.toString());
+        return tag;
+    }
+
+    @Override
+    public boolean isComponentEqual(Component other) {
+        return false;
+    }
+
+    private Map<String, Integer> tagToMap(Tag tag) {
         Map<String, Integer> kills = new HashMap<>();
-        for (String key : tag.getKeys()) {
-            kills.put(key, tag.getInt(key));
+        CompoundTag cTag = (CompoundTag) tag;
+        for (String key : cTag.getKeys()) {
+            kills.put(key, cTag.getInt(key));
         }
         return kills;
     }

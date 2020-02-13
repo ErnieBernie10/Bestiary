@@ -7,11 +7,12 @@ import io.github.cottonmc.cotton.gui.widget.WGridPanel;
 import io.github.cottonmc.cotton.gui.widget.WListPanel;
 import io.github.cottonmc.cotton.gui.widget.WWidget;
 import net.erniebernie.bestiary.gui.models.BestiaryListItem;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.BiConsumer;
 
 public class CategoryBestiaryGui extends LightweightGuiDescription {
@@ -28,14 +29,16 @@ public class CategoryBestiaryGui extends LightweightGuiDescription {
         setRootPanel(root);
 
         BiConsumer<DataModel, BestiaryListItem> config = (data, bestiaryListItem) -> {
-            bestiaryListItem.setName(data.id);
+            Text name = Registry.ENTITY_TYPE.get(new Identifier(data.id)).getName();
+            bestiaryListItem.setName(name.asString());
             bestiaryListItem.setKills(data.kills);
+            bestiaryListItem.setId(data.id);
         };
 
         WListPanel<DataModel, BestiaryListItem> killsList = new WListPanel<>(mapToList(category), BestiaryListItem::new, config);
-        killsList.setListItemHeight(20);
+        killsList.setListItemHeight(1);
 
-        root.add(killsList, 0, 0, 9, 20);
+        root.add(killsList, 0, 0, 9, 10);
 
         root.validate(this);
     }

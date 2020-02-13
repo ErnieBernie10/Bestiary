@@ -1,5 +1,6 @@
 package net.erniebernie.bestiary;
 
+import net.erniebernie.bestiary.gui.components.KillCounter;
 import net.minecraft.entity.EntityType;
 
 public interface PlayerEntityExt {
