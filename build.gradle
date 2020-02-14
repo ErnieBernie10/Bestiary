@@ -16,6 +16,10 @@ repositories {
 		name = "JitPack"
 		url = "https://jitpack.io"
 	}
+	maven {
+		name = 'Ladysnake Libs'
+		url = 'https://dl.bintray.com/ladysnake/libs'
+	}
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -41,8 +45,11 @@ dependencies {
 	// You may need to force-disable transitiveness on them.
 
 	// Replace modImplementation with modApi if you expose components in your own API
-	modApi "com.github.NerdHubMC.Cardinal-Components-API:cardinal-components-base:2.3.0"
-	modApi "com.github.NerdHubMC.Cardinal-Components-API:cardinal-components-entity:2.3.0"
+	modApi "com.github.NerdHubMC.Cardinal-Components-API:cardinal-components-base:${ccomponents_version}"
+	modApi "com.github.NerdHubMC.Cardinal-Components-API:cardinal-components-entity:${ccomponents_version}"
+
+	modImplementation "io.github.ladysnake:PlayerAbilityLib:${pal_version}"
+	include "io.github.ladysnake:PlayerAbilityLib:${pal_version}"
 }
 
 processResources {

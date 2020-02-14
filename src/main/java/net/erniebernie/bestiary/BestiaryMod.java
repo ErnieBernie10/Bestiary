@@ -1,5 +1,7 @@
 package net.erniebernie.bestiary;
 
+import io.github.ladysnake.pal.AbilitySource;
+import io.github.ladysnake.pal.Pal;
 import nerdhub.cardinal.components.api.ComponentRegistry;
 import nerdhub.cardinal.components.api.ComponentType;
 import nerdhub.cardinal.components.api.event.EntityComponentCallback;
@@ -20,6 +22,7 @@ public class BestiaryMod implements ModInitializer {
     public static final Item BESTIARY_BOOK_ITEM = new BestiaryBookItem(new Item.Settings().group(ItemGroup.MISC));
     public BestiaryConfig config;
     public static final ComponentType<BestiaryComponent> KILLS_COMPONENT = ComponentRegistry.INSTANCE.registerIfAbsent(new Identifier("fabric-bestiary:kills"), BestiaryComponent.class);
+    public static final AbilitySource BAT_FLIGHT = Pal.getAbilitySource("fabric-bestiary", "bat-flight");
 
     @Override
     public void onInitialize() {
@@ -28,6 +31,6 @@ public class BestiaryMod implements ModInitializer {
         // Add the component to every instance of PlayerEntity
         EntityComponentCallback.event(PlayerEntity.class).register((player, components) -> components.put(KILLS_COMPONENT, new BestiaryProgressComponent(player)));
         // Ensure the component's data is copied when keepInventory is enabled (Optional)
-        EntityComponents.setRespawnCopyStrategy(KILLS_COMPONENT, RespawnCopyStrategy.INVENTORY);
+        EntityComponents.setRespawnCopyStrategy(KILLS_COMPONENT, RespawnCopyStrategy.ALWAYS_COPY);
     }
 }
