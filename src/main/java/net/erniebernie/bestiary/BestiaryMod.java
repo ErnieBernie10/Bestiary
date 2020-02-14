@@ -5,8 +5,8 @@ import nerdhub.cardinal.components.api.ComponentType;
 import nerdhub.cardinal.components.api.event.EntityComponentCallback;
 import nerdhub.cardinal.components.api.util.EntityComponents;
 import nerdhub.cardinal.components.api.util.RespawnCopyStrategy;
-import net.erniebernie.bestiary.gui.components.CounterComponent;
-import net.erniebernie.bestiary.gui.components.KillCounter;
+import net.erniebernie.bestiary.components.CounterComponent;
+import net.erniebernie.bestiary.components.KillCounter;
 import net.erniebernie.bestiary.items.BestiaryBookItem;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.entity.player.PlayerEntity;
@@ -26,7 +26,7 @@ public class BestiaryMod implements ModInitializer {
         Registry.register(Registry.ITEM, new Identifier("fabric-bestiary", "bestiary_book"), BESTIARY_BOOK_ITEM);
         config = new BestiaryConfig("path");
         // Add the component to every instance of PlayerEntity
-        EntityComponentCallback.event(PlayerEntity.class).register((player, components) -> components.put(KILLS_COMPONENT, new KillCounter()));
+        EntityComponentCallback.event(PlayerEntity.class).register((player, components) -> components.put(KILLS_COMPONENT, new KillCounter(player)));
         // Ensure the component's data is copied when keepInventory is enabled (Optional)
         EntityComponents.setRespawnCopyStrategy(KILLS_COMPONENT, RespawnCopyStrategy.INVENTORY);
     }

@@ -1,9 +1,7 @@
 package net.erniebernie.bestiary.items;
 
 import net.erniebernie.bestiary.BestiaryMod;
-import net.erniebernie.bestiary.gui.components.CounterComponent;
-import net.erniebernie.bestiary.gui.components.KillCounter;
-import net.erniebernie.bestiary.PlayerEntityExt;
+import net.erniebernie.bestiary.components.CounterComponent;
 import net.erniebernie.bestiary.gui.MainBestiaryGui;
 import net.erniebernie.bestiary.gui.screens.BestiaryScreen;
 import net.minecraft.client.MinecraftClient;

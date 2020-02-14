@@ -1,10 +1,15 @@
-package net.erniebernie.bestiary.gui.components;
+package net.erniebernie.bestiary.components;
 
+import nerdhub.cardinal.components.api.ComponentType;
 import nerdhub.cardinal.components.api.component.Component;
+import net.erniebernie.bestiary.BestiaryMod;
 import net.fabricmc.fabric.api.tag.TagRegistry;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -22,11 +27,14 @@ public class KillCounter implements CounterComponent {
     private Identifier hostilesId = new Identifier("fabric-bestiary:hostiles");
     private Identifier bossesId = new Identifier("fabric-bestiary:bosses");
 
-    public KillCounter() {
+    private PlayerEntity owner;
+
+    public KillCounter(PlayerEntity owner) {
         passiveKills = new HashMap<>();
         neutralKills = new HashMap<>();
         hostileKills = new HashMap<>();
         bossKills = new HashMap<>();
+        this.owner = owner;
     }
 
     public void addKills(EntityType entityType, int amount) {
@@ -121,5 +129,23 @@ public class KillCounter implements CounterComponent {
 
     public Map<String, Integer> getBossKills() {
         return bossKills;
+    }
+
+    @Override
+    public Entity getEntity() {
+        return owner;
+    }
+
+    @Override
+    public void sync() {
+        if (!this.getEntity().world.isClient) {
+            // We only sync with the holder, not with everyone around
+            this.syncWith((ServerPlayerEntity) this.getEntity());
+        }
+    }
+
+    @Override
+    public ComponentType<CounterComponent> getComponentType() {
+        return BestiaryMod.KILLS_COMPONENT;
     }
 }

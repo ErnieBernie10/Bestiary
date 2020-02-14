@@ -1,18 +1,17 @@
 package net.erniebernie.bestiary.gui;
 
-import io.github.cottonmc.cotton.gui.client.BackgroundPainter;
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.client.ScreenDrawing;
 import io.github.cottonmc.cotton.gui.widget.WGridPanel;
 import io.github.cottonmc.cotton.gui.widget.WListPanel;
-import io.github.cottonmc.cotton.gui.widget.WWidget;
 import net.erniebernie.bestiary.gui.models.BestiaryListItem;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.function.BiConsumer;
 
 public class CategoryBestiaryGui extends LightweightGuiDescription {
