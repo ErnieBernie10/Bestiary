@@ -16,11 +16,11 @@ import net.minecraft.util.registry.Registry;
 import java.util.HashMap;
 import java.util.Map;
 
-public class KillCounter implements CounterComponent {
-    private Map<String, Integer> passiveKills;
-    private Map<String, Integer> neutralKills;
-    private Map<String, Integer> hostileKills;
-    private Map<String, Integer> bossKills;
+public class BestiaryProgressComponent implements BestiaryComponent {
+    private Map<String, Integer> passiveProgress;
+    private Map<String, Integer> neutralProgress;
+    private Map<String, Integer> hostileProgress;
+    private Map<String, Integer> bossProgress;
 
     private Identifier passivesId = new Identifier("fabric-bestiary:passives");
     private Identifier neutralsId = new Identifier("fabric-bestiary:neutrals");
@@ -29,27 +29,27 @@ public class KillCounter implements CounterComponent {
 
     private PlayerEntity owner;
 
-    public KillCounter(PlayerEntity owner) {
-        passiveKills = new HashMap<>();
-        neutralKills = new HashMap<>();
-        hostileKills = new HashMap<>();
-        bossKills = new HashMap<>();
+    public BestiaryProgressComponent(PlayerEntity owner) {
+        passiveProgress = new HashMap<>();
+        neutralProgress = new HashMap<>();
+        hostileProgress = new HashMap<>();
+        bossProgress = new HashMap<>();
         this.owner = owner;
     }
 
-    public void addKills(EntityType entityType, int amount) {
+    public void addProgress(EntityType entityType, int amount) {
         if (entityType.isTaggedWith(TagRegistry.entityType(passivesId))) {
-            addKills(passiveKills, entityType, amount);
+            addProgress(passiveProgress, entityType, amount);
         } else if (entityType.isTaggedWith(TagRegistry.entityType(neutralsId))) {
-            addKills(neutralKills, entityType, amount);
+            addProgress(neutralProgress, entityType, amount);
         } else if (entityType.isTaggedWith(TagRegistry.entityType(hostilesId))) {
-            addKills(hostileKills, entityType, amount);
+            addProgress(hostileProgress, entityType, amount);
         } else if (entityType.isTaggedWith(TagRegistry.entityType(bossesId))) {
-            addKills(bossKills, entityType, amount);
+            addProgress(bossProgress, entityType, amount);
         }
     }
 
-    private void addKills(Map<String, Integer> map, EntityType type, int amount) {
+    private void addProgress(Map<String, Integer> map, EntityType type, int amount) {
         String typeId = Registry.ENTITY_TYPE.getId(type).toString();
         if (!map.containsKey(typeId)) {
             map.put(typeId, amount);
@@ -68,19 +68,19 @@ public class KillCounter implements CounterComponent {
 
     @Override
     public void fromTag(CompoundTag tag) {
-        this.passiveKills = tagToMap(tag.get("passives"));
-        this.neutralKills = tagToMap(tag.get("neutrals"));
-        this.hostileKills = tagToMap(tag.get("hostiles"));
-        this.bossKills = tagToMap(tag.get("bosses"));
+        this.passiveProgress = tagToMap(tag.get("passives"));
+        this.neutralProgress = tagToMap(tag.get("neutrals"));
+        this.hostileProgress = tagToMap(tag.get("hostiles"));
+        this.bossProgress = tagToMap(tag.get("bosses"));
         System.out.println(this.toString());
     }
 
     @Override
     public CompoundTag toTag(CompoundTag tag) {
-        tag.put("passives", toTag(passiveKills));
-        tag.put("neutrals", toTag(neutralKills));
-        tag.put("hostiles", toTag(hostileKills));
-        tag.put("bosses", toTag(bossKills));
+        tag.put("passives", toTag(passiveProgress));
+        tag.put("neutrals", toTag(neutralProgress));
+        tag.put("hostiles", toTag(hostileProgress));
+        tag.put("bosses", toTag(bossProgress));
         System.out.println(this.toString());
         return tag;
     }
@@ -102,10 +102,10 @@ public class KillCounter implements CounterComponent {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        mapToString(passiveKills, builder);
-        mapToString(neutralKills, builder);
-        mapToString(hostileKills, builder);
-        mapToString(bossKills, builder);
+        mapToString(passiveProgress, builder);
+        mapToString(neutralProgress, builder);
+        mapToString(hostileProgress, builder);
+        mapToString(bossProgress, builder);
         return builder.toString();
     }
 
@@ -115,20 +115,20 @@ public class KillCounter implements CounterComponent {
         }
     }
 
-    public Map<String, Integer> getPassiveKills() {
-        return passiveKills;
+    public Map<String, Integer> getPassiveProgress() {
+        return passiveProgress;
     }
 
-    public Map<String, Integer> getNeutralKills() {
-        return neutralKills;
+    public Map<String, Integer> getNeutralProgress() {
+        return neutralProgress;
     }
 
-    public Map<String, Integer> getHostileKills() {
-        return hostileKills;
+    public Map<String, Integer> getHostileProgress() {
+        return hostileProgress;
     }
 
-    public Map<String, Integer> getBossKills() {
-        return bossKills;
+    public Map<String, Integer> getBossProgress() {
+        return bossProgress;
     }
 
     @Override
@@ -145,7 +145,7 @@ public class KillCounter implements CounterComponent {
     }
 
     @Override
-    public ComponentType<CounterComponent> getComponentType() {
+    public ComponentType<BestiaryComponent> getComponentType() {
         return BestiaryMod.KILLS_COMPONENT;
     }
 }

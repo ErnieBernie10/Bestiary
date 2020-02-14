@@ -1,7 +1,7 @@
 package net.erniebernie.bestiary.mixin;
 
 import net.erniebernie.bestiary.BestiaryMod;
-import net.erniebernie.bestiary.components.CounterComponent;
+import net.erniebernie.bestiary.components.BestiaryComponent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -22,8 +22,8 @@ public abstract class LivingEntityMixin extends Entity {
     @Inject(method = "onDeath", at = @At("HEAD"))
     public void onDeath(DamageSource source, CallbackInfo info) {
         if (source.getAttacker() instanceof PlayerEntity) {
-            CounterComponent counter = BestiaryMod.KILLS_COMPONENT.get(source.getAttacker());
-            counter.addKills(this.getType(), 1);
+            BestiaryComponent counter = BestiaryMod.KILLS_COMPONENT.get(source.getAttacker());
+            counter.addProgress(this.getType(), 1);
             counter.sync();
         }
     }
