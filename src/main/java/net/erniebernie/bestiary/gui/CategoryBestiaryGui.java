@@ -30,14 +30,14 @@ public class CategoryBestiaryGui extends LightweightGuiDescription {
         BiConsumer<DataModel, BestiaryListItem> config = (data, bestiaryListItem) -> {
             Text name = Registry.ENTITY_TYPE.get(new Identifier(data.id)).getName();
             bestiaryListItem.setName(name.asString());
-            bestiaryListItem.setKills(data.kills);
+            bestiaryListItem.setProgress(data.progress);
             bestiaryListItem.setId(data.id);
         };
 
-        WListPanel<DataModel, BestiaryListItem> killsList = new WListPanel<>(mapToList(category), BestiaryListItem::new, config);
-        killsList.setListItemHeight(1);
+        WListPanel<DataModel, BestiaryListItem> progressList = new WListPanel<>(mapToList(category), BestiaryListItem::new, config);
+        progressList.setListItemHeight(1);
 
-        root.add(killsList, 0, 0, 9, 10);
+        root.add(progressList, 0, 0, 9, 10);
 
         root.validate(this);
     }
@@ -58,11 +58,11 @@ public class CategoryBestiaryGui extends LightweightGuiDescription {
 
     private static class DataModel {
         String id;
-        int kills;
+        int progress;
 
-        public DataModel(String id, int kills) {
+        public DataModel(String id, int progress) {
             this.id = id;
-            this.kills = kills;
+            this.progress = progress;
         }
     }
 }
