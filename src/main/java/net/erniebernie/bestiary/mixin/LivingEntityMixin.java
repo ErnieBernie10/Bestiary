@@ -1,19 +1,19 @@
 package net.erniebernie.bestiary.mixin;
 
-import io.github.ladysnake.pal.VanillaAbilities;
 import net.erniebernie.bestiary.BestiaryMod;
 import net.erniebernie.bestiary.components.BestiaryComponent;
-import net.minecraft.client.network.ClientPlayerEntity;
+import net.erniebernie.bestiary.gui.models.BeastDetail;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LivingEntity.class)
@@ -33,4 +33,19 @@ public abstract class LivingEntityMixin extends Entity {
             }
         }
     }
+
+    @ModifyVariable(method = "applyDamage", at = @At("HEAD"))
+    public float applyDamage(float amount, DamageSource source) {
+        return applyBestiaryToDamage(source, amount);
+    }
+
+    public float applyBestiaryToDamage(DamageSource source, float amount) {
+        if (source.getAttacker() instanceof PlayerEntity) {
+            float progress = BestiaryMod.KILLS_COMPONENT.get(source.getAttacker()).getProgress(this.getType());
+            BeastDetail detail = BestiaryMod.BEAST_DETAILS.get(Registry.ENTITY_TYPE.getId(this.getType()).toString());
+            return amount + progress / detail.getDamageModifier();
+        }
+        return amount;
+    }
 }
+

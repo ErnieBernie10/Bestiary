@@ -38,19 +38,34 @@ public class BestiaryProgressComponent implements BestiaryComponent {
     }
 
     public void addProgress(EntityType entityType, int amount) {
-        if (entityType.isTaggedWith(TagRegistry.entityType(passivesId))) {
-            addProgress(passiveProgress, entityType, amount);
-        } else if (entityType.isTaggedWith(TagRegistry.entityType(neutralsId))) {
-            addProgress(neutralProgress, entityType, amount);
-        } else if (entityType.isTaggedWith(TagRegistry.entityType(hostilesId))) {
-            addProgress(hostileProgress, entityType, amount);
-        } else if (entityType.isTaggedWith(TagRegistry.entityType(bossesId))) {
-            addProgress(bossProgress, entityType, amount);
+        addProgress(sortEntityType(entityType), entityType, amount);
+    }
+
+    private Map<String, Integer> sortEntityType(EntityType<?> type) {
+        if (type.isTaggedWith(TagRegistry.entityType(passivesId))) {
+            return this.passiveProgress;
+        } else if (type.isTaggedWith(TagRegistry.entityType(neutralsId))) {
+            return this.neutralProgress;
+        } else if (type.isTaggedWith(TagRegistry.entityType(hostilesId))) {
+            return this.hostileProgress;
+        } else if (type.isTaggedWith(TagRegistry.entityType(bossesId))) {
+            return this.bossProgress;
         }
+        return null;
+    }
+
+    @Override
+    public int getProgress(EntityType<?> type) {
+        String typeId = getTypeId(type);
+        return sortEntityType(type).getOrDefault(typeId, 0);
+    }
+
+    private String getTypeId(EntityType<?> type) {
+        return Registry.ENTITY_TYPE.getId(type).toString();
     }
 
     private void addProgress(Map<String, Integer> map, EntityType type, int amount) {
-        String typeId = Registry.ENTITY_TYPE.getId(type).toString();
+        String typeId = getTypeId(type);
         if (!map.containsKey(typeId)) {
             map.put(typeId, amount);
         } else {

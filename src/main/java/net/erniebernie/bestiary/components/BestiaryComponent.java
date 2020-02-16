@@ -12,4 +12,5 @@ public interface BestiaryComponent extends Component, EntitySyncedComponent {
     Map<String, Integer> getHostileProgress();
     Map<String, Integer> getBossProgress();
     void addProgress(EntityType type, int amount);
+    int getProgress(EntityType<?> type);
 }

@@ -1,10 +1,12 @@
 {
   "minecraft:pig": {
     "id": "minecraft:pig",
-    "description": "Minecraft pig desc"
+    "description": "Minecraft pig desc",
+    "damageModifier": 100
   },
   "minecraft:cow": {
     "id": "minecraft:cow",
-    "description": "Minecraft cow desc"
+    "description": "Minecraft cow desc",
+    "damageModifier": 100
   }
 }
