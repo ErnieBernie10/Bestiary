@@ -28,6 +28,7 @@ public class BestiaryProgressComponent implements BestiaryComponent {
     private Identifier bossesId = new Identifier("fabric-bestiary:bosses");
 
     private PlayerEntity owner;
+    private static final int PROGRESS_LIMIT = 1000;
 
     public BestiaryProgressComponent(PlayerEntity owner) {
         passiveProgress = new HashMap<>();
@@ -65,11 +66,9 @@ public class BestiaryProgressComponent implements BestiaryComponent {
     }
 
     private void addProgress(Map<String, Integer> map, EntityType type, int amount) {
-        String typeId = getTypeId(type);
-        if (!map.containsKey(typeId)) {
-            map.put(typeId, amount);
-        } else {
-            map.put(typeId, map.get(typeId) + amount);
+        if (getProgress(type) < PROGRESS_LIMIT) {
+            String typeId = getTypeId(type);
+            map.put(typeId, map.getOrDefault(typeId, 0) + amount);
         }
     }
 

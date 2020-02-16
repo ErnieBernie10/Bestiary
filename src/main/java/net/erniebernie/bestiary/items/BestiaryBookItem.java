@@ -42,6 +42,7 @@ public class BestiaryBookItem extends Item {
             BestiaryComponent counter = BestiaryMod.KILLS_COMPONENT.get(user);
             counter.addProgress(entity.getType(), 10);
             ext.research();
+            // TODO : Show particle effect
         }
         return super.useOnEntity(stack, user, entity, hand);
     }

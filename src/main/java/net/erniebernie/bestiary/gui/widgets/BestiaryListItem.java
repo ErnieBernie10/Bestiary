@@ -1,4 +1,4 @@
-package net.erniebernie.bestiary.gui.models;
+package net.erniebernie.bestiary.gui.widgets;
 
 import io.github.cottonmc.cotton.gui.widget.WButton;
 import io.github.cottonmc.cotton.gui.widget.WGridPanel;
