@@ -15,7 +15,6 @@ import net.erniebernie.bestiary.components.BestiaryProgressComponent;
 import net.erniebernie.bestiary.gui.models.BeastDetail;
 import net.erniebernie.bestiary.items.BestiaryBookItem;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,17 +23,13 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.profiler.Profiler;
 import net.minecraft.util.registry.Registry;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class BestiaryMod implements ModInitializer {
 
