@@ -1,6 +1,10 @@
-[
-  {
+{
+  "minecraft:pig": {
     "id": "minecraft:pig",
     "description": "Minecraft pig desc"
+  },
+  "minecraft:cow": {
+    "id": "minecraft:cow",
+    "description": "Minecraft cow desc"
   }
-]
+}

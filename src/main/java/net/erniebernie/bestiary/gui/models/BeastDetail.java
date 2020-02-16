@@ -1,6 +1,6 @@
 package net.erniebernie.bestiary.gui.models;
 
-public class BeastDetail {
+public class BeastDetail implements Comparable<BeastDetail> {
     private String id;
     private String description;
 
@@ -21,5 +21,10 @@ public class BeastDetail {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public int compareTo(BeastDetail o) {
+        return this.id.compareTo(o.getId());
     }
 }
