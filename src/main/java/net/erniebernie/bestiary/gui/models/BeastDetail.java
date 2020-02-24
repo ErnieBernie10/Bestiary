@@ -4,6 +4,8 @@ public class BeastDetail implements Comparable<BeastDetail> {
     private String id;
     private String description;
     private int damageModifier;
+    private int lvl1Req;
+    private int lvl2Req;
 
     public BeastDetail() {
     }
@@ -30,6 +32,22 @@ public class BeastDetail implements Comparable<BeastDetail> {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getLvl1Req() {
+        return lvl1Req;
+    }
+
+    public void setLvl1Req(int lvl1Req) {
+        this.lvl1Req = lvl1Req;
+    }
+
+    public int getLvl2Req() {
+        return lvl2Req;
+    }
+
+    public void setLvl2Req(int lvl2Req) {
+        this.lvl2Req = lvl2Req;
     }
 
     @Override

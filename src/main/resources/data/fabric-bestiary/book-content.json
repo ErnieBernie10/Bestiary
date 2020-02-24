@@ -8,5 +8,12 @@
     "id": "minecraft:cow",
     "description": "Minecraft cow desc",
     "damageModifier": 100
+  },
+  "minecraft:chicken": {
+    "id": "minecraft:chicken",
+    "description": "Minecraft chicken desc",
+    "damageModifier": 100,
+    "lvl1Req": 100,
+    "lvl2Req": 500
   }
 }
