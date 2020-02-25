@@ -9,6 +9,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -44,7 +45,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityEx
 
     public float applyBestiaryToDamage(DamageSource source, float amount) {
         // TODO : Refactor everything to make a unified abilities handler
-        if (source.getAttacker() instanceof PlayerEntity) {
+        if (source.getAttacker() instanceof ServerPlayerEntity) {
             BestiaryComponent component = BestiaryMod.KILLS_COMPONENT.get(source.getAttacker());
             BeastDetail detail = BestiaryMod.BEAST_DETAILS.get(Registry.ENTITY_TYPE.getId(this.getType()).toString());
             float progress = component.getProgress(this.getType());

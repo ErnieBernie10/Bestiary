@@ -15,5 +15,11 @@
     "damageModifier": 100,
     "lvl1Req": 100,
     "lvl2Req": 500
+  },
+  "minecraft:iron_golem": {
+    "id": "minecraft:iron_golem",
+    "description": "Minecraft iron golem desc",
+    "lvl1Req": 10,
+    "lvl2Req": 50
   }
 }
