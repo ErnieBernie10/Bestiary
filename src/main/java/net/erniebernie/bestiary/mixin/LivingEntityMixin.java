@@ -48,18 +48,27 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityEx
             BestiaryComponent component = BestiaryMod.KILLS_COMPONENT.get(source.getAttacker());
             BeastDetail detail = BestiaryMod.BEAST_DETAILS.get(Registry.ENTITY_TYPE.getId(this.getType()).toString());
             float progress = component.getProgress(this.getType());
+            float decrease = 0f;
+            // TODO : Get buf values from config file
             if (source == DamageSource.FALL && detail.getId().equals("minecraft:chicken")) {
-                float decrease = 0;
-                if (progress > detail.getLvl1Req()) {
-                    decrease = 0.1f;
-                } else if (progress > detail.getLvl2Req()) {
-                    decrease = 0.25f;
-                }
-                amount *= (1 - decrease);
+                amount = applyDamageReduction(amount, progress, detail, 0.1f, 0.25f);
+            } else if ((source == DamageSource.ON_FIRE || source == DamageSource.IN_FIRE) && detail.getId().equals("minecraft:zombie_pigman")) {
+                amount = applyDamageReduction(amount, progress, detail, 0.2f, 0.5f);
             }
             amount += progress / detail.getDamageModifier();
         }
         return amount;
+    }
+
+    // Have mercy I don't know what I'm doing anymore
+    float applyDamageReduction(float amount, float progress, BeastDetail detail, float lvl1Reduction, float lvl2Reduction) {
+        float reduction = 0;
+        if (progress > detail.getLvl1Req()) {
+            reduction = lvl1Reduction;
+        } else if (progress > detail.getLvl2Req()) {
+            reduction = lvl2Reduction;
+        }
+        return amount * (1 - reduction);
     }
 
     @Override
