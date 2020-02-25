@@ -48,16 +48,14 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityEx
             BestiaryComponent component = BestiaryMod.KILLS_COMPONENT.get(source.getAttacker());
             BeastDetail detail = BestiaryMod.BEAST_DETAILS.get(Registry.ENTITY_TYPE.getId(this.getType()).toString());
             float progress = component.getProgress(this.getType());
-            if (source == DamageSource.FALL) {
-                if (detail.getId().equals("minecraft:chicken")) {
-                    float decrease = 0;
-                    if (progress > detail.getLvl1Req()) {
-                        decrease = 0.1f;
-                    } else if (progress > detail.getLvl2Req()) {
-                        decrease = 0.25f;
-                    }
-                    amount *= (1 - decrease);
+            if (source == DamageSource.FALL && detail.getId().equals("minecraft:chicken")) {
+                float decrease = 0;
+                if (progress > detail.getLvl1Req()) {
+                    decrease = 0.1f;
+                } else if (progress > detail.getLvl2Req()) {
+                    decrease = 0.25f;
                 }
+                amount *= (1 - decrease);
             }
             amount += progress / detail.getDamageModifier();
         }
