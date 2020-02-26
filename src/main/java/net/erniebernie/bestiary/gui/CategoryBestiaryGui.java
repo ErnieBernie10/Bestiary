@@ -35,7 +35,6 @@ public class CategoryBestiaryGui extends LightweightGuiDescription {
         };
 
         WListPanel<DataModel, BestiaryListItem> progressList = new WListPanel<>(mapToList(category), BestiaryListItem::new, config);
-        progressList.setListItemHeight(1);
 
         root.add(progressList, 0, 0, 9, 10);
 
