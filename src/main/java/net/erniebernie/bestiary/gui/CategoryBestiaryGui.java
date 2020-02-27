@@ -19,6 +19,10 @@ public class CategoryBestiaryGui extends LightweightGuiDescription {
     private Map<String, Integer> category;
     private Identifier background;
 
+    public Identifier getBackground() {
+        return background;
+    }
+
     public CategoryBestiaryGui(Map<String, Integer> category, Identifier background) {
         this.category = category;
         this.background = background;
@@ -32,6 +36,7 @@ public class CategoryBestiaryGui extends LightweightGuiDescription {
             bestiaryListItem.setName(name.asString());
             bestiaryListItem.setProgress(data.progress);
             bestiaryListItem.setId(data.id);
+            bestiaryListItem.setHost(this);
         };
 
         WListPanel<DataModel, BestiaryListItem> progressList = new WListPanel<>(mapToList(category), BestiaryListItem::new, config);

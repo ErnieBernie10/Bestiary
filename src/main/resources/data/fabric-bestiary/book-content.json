@@ -2,22 +2,26 @@
   "minecraft:pig": {
     "id": "minecraft:pig",
     "description": "Minecraft pig desc",
+    "health": 10,
     "damageModifier": 100
   },
   "minecraft:cow": {
     "id": "minecraft:cow",
     "description": "Minecraft cow desc",
+    "health" : 10,
     "damageModifier": 100
   },
   "minecraft:chicken": {
     "id": "minecraft:chicken",
     "description": "Minecraft chicken desc",
+    "health": 4,
     "damageModifier": 100,
     "lvl1Req": 100,
     "lvl2Req": 500
   },
   "minecraft:iron_golem": {
     "id": "minecraft:iron_golem",
+    "health": 100,
     "description": "Minecraft iron golem desc",
     "lvl1Req": 10,
     "lvl2Req": 50

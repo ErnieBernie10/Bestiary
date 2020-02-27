@@ -19,19 +19,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends LivingEntity {
 
-    private BestiaryComponent component;
-    private BeastDetail detail;
+    private BestiaryComponent component = BestiaryMod.KILLS_COMPONENT.get(this);
+    private BeastDetail detail = BestiaryMod.BEAST_DETAILS.get("minecraft:iron_golem");
 
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> type, World world) {
         super(type, world);
-        component = BestiaryMod.KILLS_COMPONENT.get(this);
-        detail = BestiaryMod.BEAST_DETAILS.get("minecraft:iron_golem");
     }
 
     @Inject(method = "tick", at = @At("RETURN"))
     public void tick(CallbackInfo ci) {
         // TODO : Add option to disable this and in fact all effects that are being granted to a player
-        if (this.world.getTime() % 80L == 0L) {
+        if (!this.world.isClient && this.world.getTime() % 80L == 0L) {
             int golemProgress = component.getProgress(Registry.ENTITY_TYPE.get(new Identifier("minecraft:iron_golem")));
             if (golemProgress > detail.getLvl1Req()) {
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 500, 0));
@@ -40,4 +38,5 @@ public abstract class PlayerEntityMixin extends LivingEntity {
             }
         }
     }
+
 }

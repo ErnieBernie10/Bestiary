@@ -6,8 +6,17 @@ public class BeastDetail implements Comparable<BeastDetail> {
     private int damageModifier;
     private int lvl1Req;
     private int lvl2Req;
+    private int health;
 
     public BeastDetail() {
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 
     public int getDamageModifier() {
